@@ -1,0 +1,5 @@
+bin
+spec
+.gitignore
+README.md
+*.db

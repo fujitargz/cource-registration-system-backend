@@ -3,7 +3,6 @@ package infra
 import (
 	"database/sql"
 	"log"
-	"os"
 
 	"github.com/fujitargz/cource-registration-system-backend/internal/domain"
 )
@@ -43,7 +42,6 @@ func (r *UserRepositoryInfra) FindByID(ID string) (*domain.User, error) {
 }
 
 func Open() (*sql.DB, error) {
-	os.Remove("./trial-api.db")
 	db, err := sql.Open("sqlite3", "./trial-api.db")
 	if err != nil {
 		log.Println("failed to open database: ", err)

@@ -4,7 +4,7 @@ BINPATH=$(BINDIR)/$(BINNAME)
 
 .PHONY: build
 build:
-	CGO_ENABLED=1 CGO_LDGLAGS=' -linkmode external -extldflags "-static"' GOOS=linux go build -o $(BINPATH) ./cmd/$(BINNAME)/main.go
+	CGO_ENABLED=1 go build -ldflags '-linkmode external -extldflags "-static"' -o $(BINPATH) ./cmd/$(BINNAME)/main.go
 
 .PHONY: clean
 clean:
@@ -12,4 +12,4 @@ clean:
 
 .PHONY: run
 run:
-	go run ./cmd/$(BINNAME)/main.go
+	docker build -t trial-api:0.1 -f ./build/Dockerfile . && docker run -p 8000:8000 trial-api:0.1
